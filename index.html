@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Online Shopping</title>
+    <link rel="stylesheet" href="priya.css">
+    <title>Choose Your Style - Shopping Cart</title>
+    <style>
+        /* Basic styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        header {
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        nav {
+            background-color: #333;
+            text-align: center;
+        }
+
+        nav a {
+            color: white;
+            padding: 14px 20px;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        nav a:hover {
+            background-color: #ddd;
+        }
+
+        .container {
+            padding: 20px;
+        }
+
+        .product {
+            display: inline-block;
+            width: 30%;
+            margin: 10px;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .product img {
+            width: 100%;
+            height: auto;
+        }
+
+        .product h3 {
+            margin-top: 10px;
+        }
+
+        .product p {
+            color: #888;
+        }
+
+        .product button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .product button:hover {
+            background-color: #45a049;
+        }
+
+        .cart {
+            background-color: #fff;
+            padding: 20px;
+            margin-top: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .cart h2 {
+            text-align: center;
+        }
+
+        .cart-items {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .cart-items li {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .cart-summary {
+            text-align: right;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <header>
+        <h1>Choose Your Style - Online Shopping</h1>
+        <p>Find the best styles for your wardrobe</p>
+    </header>
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#shop">Shop</a>
+        <a href="#cart">Cart</a>
+    </nav>
+        <!-- Main Content -->
+        <div class="container" id="shop">
+            <h2>Featured Products</h2>
+    
+            <!-- Product 1 -->
+            <div class="product">
+                <img src="https://fashionscience.in/cdn/shop/files/casualshirt_f4d9dc10-f575-472a-8b36-a605d2ba46b9.webp?v=1726730405" alt="Product 1">
+                <h3>Stylish Shirt</h3>
+                <p>$20.00</p>
+                <button onclick="addToCart('Stylish Shirt', 20.00)">Add to Cart</button>
+            </div>
+    
+            <!-- Product 2 -->
+            <div class="product">
+                <img src="https://assets.myntassets.com/w_412,q_60,dpr_2,fl_progressive/assets/images/27684012/2024/9/21/57485916-7608-411c-8d6c-5a0271fb71ce1726940213555-Urbano-Fashion-Men-Loose-Fit-Non-Stretchable-Cargo-Jeans-973-1.jpg" alt="Product 2">
+                <h3>Trendy Jeans</h3>
+                <p>$30.00</p>
+                <button onclick="addToCart('Trendy Jeans', 30.00)">Add to Cart</button>
+            </div>
+    
+            <!-- Product 3 -->
+            <div class="product">
+                <img src="https://rukminim2.flixcart.com/image/850/1000/kz065jk0/shoe/q/t/d/9-wk-120-casual-woakers-red-original-imagb3ycyshf94s4.jpeg?q=20&crop=false" alt="Product 3">
+                <h3>Cool Sneakers</h3>
+                <p>$50.00</p>
+                <button onclick="addToCart('Cool Sneakers', 50.00)">Add to Cart</button>
+            </div>
+        </div>
+    
+        <!-- Cart Section -->
+        <div class="container" id="cart">
+            <div class="cart">
+                <h2>Your Shopping Cart</h2>
+                <ul id="cart-items" class="cart-items">
+                    <!-- Cart items will be added here dynamically -->
+                </ul>
+                <div class="cart-summary">
+                    Total: $<span id="total-price">0.00</span>
+                </div>
+            </div>
+        </div>
+    
+        <!-- Footer -->
+        <footer>
+            <p>&copy; 2024 Choose Your Style. All Rights Reserved.</p>
+        </footer>
+    
+        <script>
+            let cart = [];
+            let totalPrice = 0;
+    
+            function addToCart(product, price) {
+                cart.push({ product, price });
+                totalPrice += price;
+                updateCart();
+            }
+    
+            function updateCart() {
+                const cartItems = document.getElementById('cart-items');
+                const totalPriceElement = document.getElementById('total-price');
+                cartItems.innerHTML = '';
+    
+                cart.forEach(item => {
+                    const li = document.createElement('li');
+                    li.textContent = ${item.product} - $${item.price.toFixed(2)};
+                    cartItems.appendChild(li);
+                });
+    
+                totalPriceElement.textContent = totalPrice.toFixed(2);
+            }
+        </script>
+    
+    </body>
+    </html>
